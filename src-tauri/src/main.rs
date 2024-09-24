@@ -4,6 +4,7 @@
 use rdev::{listen, EventType};
 use tauri::{self, Manager};
 
+
 #[derive(Clone, serde::Serialize)]
 struct Payload {
     key: String,
@@ -20,13 +21,13 @@ fn main() {
                         let key_name = format!("{:?}", key);
                         handle
                             .emit_all("key-down", Payload { key: key_name })
-                            .expect("Something good happend");
+                            .unwrap()
                     }
                     EventType::KeyRelease(key) => {
                         let key_name = format!("{:?}", key);
                         handle
                             .emit_all("key-up", Payload { key: key_name })
-                            .expect("Something bad happend");
+                            .unwrap()
                     }
                     _ => {}
                 })

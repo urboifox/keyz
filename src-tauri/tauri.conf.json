@@ -65,11 +65,11 @@
 				"resizable": false,
 				"decorations": false,
 				"title": "Keyz",
-				"width": 250,
-				"height": 100,
+				"width": 230,
+				"height": 130,
 				"alwaysOnTop": true,
 				"transparent": true,
-        "maximizable": false
+				"maximizable": false
 			}
 		]
 	}

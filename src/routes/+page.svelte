@@ -2,7 +2,6 @@
 	import { KEYS, SPECIAL_KEYS, SPECIAL_KEYS_MAP } from '$lib';
 	import { listen, type Event } from '@tauri-apps/api/event';
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
 
 	let strokes: string[] = [];
 	const special_keys = ['Shift', 'Control', 'Alt', 'Meta'] as const;
@@ -17,7 +16,7 @@
 			clearInterval(interval);
 			interval = setInterval(() => {
 				strokes = [];
-			}, 2000);
+			}, 1200);
 
 			const pressed_key = event.payload.key;
 			if (Object.keys(SPECIAL_KEYS).includes(pressed_key)) {
@@ -28,7 +27,7 @@
 				];
 			} else {
 				const key_display = KEYS[pressed_key as keyof typeof KEYS] || '';
-				strokes = [...strokes, key_display].slice(-8);
+				strokes = [...strokes, key_display].slice(-6)
 			}
 		});
 
@@ -59,13 +58,13 @@
 <main>
 	<div class="overlay" data-tauri-drag-region />
 	<div class="keys">
-		{#each strokes as stroke}
-			<span out:fade={{ duration: 100 }} class="key">{stroke}</span>
+		{#each strokes as stroke, i (i)}
+			<span class="key">{stroke}</span>
 		{/each}
 	</div>
 
 	<div class="special-keys">
-		{#each special_keys as key}
+		{#each special_keys as key, i (i)}
 			<span class:active={pressed_keys.includes(key)} class="key">{SPECIAL_KEYS[key]}</span>
 		{/each}
 	</div>
@@ -94,9 +93,10 @@
 
 	.keys {
 		display: flex;
-		flex: 1;
 		align-items: center;
-		gap: 0.1rem;
+		justify-content: center;
+		flex-grow: 1;
+		width: 100%;
 		overflow-x: hidden;
 		max-width: 100%;
 		font-size: 2rem;
