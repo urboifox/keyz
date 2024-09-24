@@ -18,6 +18,6 @@ I hope it will be useful for other people too.
 
 ## Support
 
-Currently it's available for `linux`, will add `windows` soon.
+Currently it's available for `linux` and `windows`.
 for macos I'm sure something like keycastr and other mac alternatives is enough.
 this app is meant for linux, windows
